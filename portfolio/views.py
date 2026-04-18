@@ -482,6 +482,45 @@ def admin_dashboard(request):
                 messages.success(request, "Experience added.")
 
         # =========================
+        # Update experience
+        # =========================
+        elif action == "update_experience":
+            exp_id = request.POST.get("experience_id")
+            exp = get_object_or_404(Experience, id=exp_id, portfolio=portfolio)
+
+            job_title = (request.POST.get("job_title") or "").strip()
+            company_name = (request.POST.get("company_name") or "").strip()
+            start_date = request.POST.get("start_date")
+            end_date = request.POST.get("end_date") or None
+            is_current = request.POST.get("is_current") == "on"
+            description = (request.POST.get("description") or "").strip()
+
+            if not (job_title and company_name and start_date and description):
+                messages.error(
+                    request,
+                    "Please fill job title, company, start date, and description.",
+                )
+            else:
+                if is_current:
+                    end_date = None
+
+                exp.job_title = job_title
+                exp.company_name = company_name
+                exp.employment_type = (
+                    request.POST.get("employment_type") or exp.employment_type
+                )
+                exp.start_date = start_date
+                exp.end_date = end_date
+                exp.is_current = is_current
+                exp.description = description
+                exp.location = request.POST.get("exp_location") or ""
+                exp.company_url = request.POST.get("company_url") or ""
+                exp.highlights = request.POST.get("highlights") or ""
+                exp.save()
+
+                messages.success(request, "Experience updated.")
+
+        # =========================
         # Add education
         # =========================
         elif action == "add_education":

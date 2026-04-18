@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alex Carter — Full Stack Developer</title>
+    <title>Mozammal — Flutter Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
@@ -300,23 +300,51 @@
       
       .hero-h1 {
         font-family: 'Syne', sans-serif;
-        font-size: clamp(48px, 7vw, 90px);
+        font-size: clamp(44px, 6.2vw, 84px);
         font-weight: 800;
-        line-height: 1;
+        line-height: 1.02;
         letter-spacing: -0.03em;
         color: var(--text);
         margin-bottom: 28px;
         animation: fadeSlideUp 0.8s 0.1s ease both;
+        position: relative;
       }
-      .hero-h1 .line2 {
-        background: linear-gradient(120deg, var(--accent), var(--accent2));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+      .hero-h1::after {
+        content: '';
+        position: absolute;
+        right: -22px;
+        top: 0.1em;
+        width: 14px;
+        height: 0.9em;
+        border-radius: 8px;
+        background: linear-gradient(180deg, rgba(79, 110, 247, 0.55), rgba(167, 139, 250, 0.35), rgba(244, 114, 182, 0.22));
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35), 0 10px 30px rgba(79, 110, 247, 0.22);
+        overflow: hidden;
+        animation: heroSolarFloat 6s ease-in-out infinite;
       }
-      .hero-h1 .line3 {
-        -webkit-text-stroke: 1.5px rgba(79, 110, 247, 0.28);
-        color: transparent;
+      .hero-h1::before {
+        content: '';
+        position: absolute;
+        right: -22px;
+        top: 0.1em;
+        width: 14px;
+        height: 0.9em;
+        border-radius: 8px;
+        background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0) 0px, rgba(255, 255, 255, 0) 3px, rgba(255, 255, 255, 0.28) 3px, rgba(255, 255, 255, 0.28) 4px);
+        mix-blend-mode: overlay;
+        opacity: 0.85;
+        pointer-events: none;
+      }
+      @keyframes heroSolarFloat {
+        0%,
+        100% {
+          transform: translateY(0) translateX(0);
+          filter: saturate(1) brightness(1);
+        }
+        50% {
+          transform: translateY(-6px) translateX(2px);
+          filter: saturate(1.1) brightness(1.06);
+        }
       }
       
       .hero-sub {
@@ -1319,6 +1347,7 @@
               <div class="project-body">
                 <div class="project-title">{{ project.title }}</div>
                 <div class="project-desc">{{ project.short_description }}</div>
+                <div class="project-desc">{{ project.description }}</div>
                 <div class="project-stack">
                   {% for tech in project.technologies %}
                     <span class="tag">{{ tech }}</span>
@@ -1377,9 +1406,9 @@
                 {% endif %}
               </div>
               <ul class="exp-desc">
-                <li>{{ exp.description|truncatewords:20 }}</li>
+                <li>{{ exp.description }}</li>
                 {% if exp.highlights %}
-                  <li>{{ exp.highlights|truncatewords:15 }}</li>
+                  <li>{{ exp.highlights }}</li>
                 {% endif %}
               </ul>
             </div>
