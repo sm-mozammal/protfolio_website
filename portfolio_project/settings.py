@@ -42,11 +42,6 @@ ALLOWED_HOSTS = [
 ]
 
 
-# CLOUDINARY_STORAGE = {
-#     "CLOUD_NAME": "dlxpowjyf",
-#     "API_KEY": "237353193633925",
-#     "API_SECRET": "uS4N-KRDg4Z0-LkFLG30DgJzeKA",
-# }
 
 CLOUDINARY_STORAGE = {
     "CLOUD_NAME": os.getenv("CLOUD_NAME"),
