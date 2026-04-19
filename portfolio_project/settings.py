@@ -41,9 +41,9 @@ ALLOWED_HOSTS = ["mozammal-app.onrender.com"]
 import cloudinary
 
 cloudinary.config(
-    cloud_name="your_cloud_name",
-    api_key="your_api_key",
-    api_secret="your_api_secret",
+    cloud_name="dlxpowjyf",
+    api_key="237353193633925",
+    api_secret="uS4N-KRDg4Z0-LkFLG30DgJzeKA",
 )
 
 
