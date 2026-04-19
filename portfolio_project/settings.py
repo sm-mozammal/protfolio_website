@@ -21,7 +21,6 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
 
 # Quick-start development settings - unsuitable for production
@@ -34,17 +33,23 @@ SECRET_KEY = "django-insecure-vyk_!60unz!0%d+opsnd7@k$lej_e01idvnbu63h^l)ya^5%t!
 DEBUG = False
 # DEBUG = True
 
-ALLOWED_HOSTS = ["mozammal-app.onrender.com"]
+# ALLOWED_HOSTS = ["mozammal-app.onrender.com"]
 # ALLOWED_HOSTS = ["*", "localhost", "127.0.0.1", "testserver"]
+ALLOWED_HOSTS = [
+    "mozammal-app.onrender.com",
+    "127.0.0.1",
+    "localhost",
+]
 
 
-import cloudinary
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": "dlxpowjyf",
+    "API_KEY": "237353193633925",
+    "API_SECRET": "uS4N-KRDg4Z0-LkFLG30DgJzeKA",
+}
 
-cloudinary.config(
-    cloud_name="dlxpowjyf",
-    api_key="237353193633925",
-    api_secret="uS4N-KRDg4Z0-LkFLG30DgJzeKA",
-)
+
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
 
 # Application definition
